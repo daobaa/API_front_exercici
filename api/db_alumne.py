@@ -87,7 +87,7 @@ def read_list():
         cur = conn.cursor() # Crear un cursor para ejecutar consultas
         cur.execute("""
                     SELECT alu.NomAlumne, alu.Cicle, alu.Curs, alu.Grup, aul.DescAula
-                    FROM ALUMNE alu CROSS JOIN AULA aul
+                    FROM ALUMNE alu INNER JOIN AULA aul ON aul.IdAula = alu.IdAula
                     """) # Ejecutar la consulta para seleccionar todos los registros
         students = cur.fetchall()   # Obtener todos los registros resultantes
     except Exception as e:

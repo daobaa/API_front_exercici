@@ -6,6 +6,7 @@ from alumne import alumne_schema
 import db_alumne
 import db_aula
 from aula import aules_alumnes_schema
+from alumne import alumne_sch2_list
 
 app = FastAPI()
 
@@ -28,7 +29,7 @@ def read_alumnes():
 
     try:
         # Llama a la función para obtener alumnos
-        alumnes_sch = alumne.alumnes_schema(adb)
+        alumnes_sch = alumne_sch2_list(adb)
     except ValueError as e:
         # Maneja errores si los datos no son válidos
         raise HTTPException(status_code=500, detail=str(e))

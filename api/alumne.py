@@ -23,3 +23,22 @@ def alumnes_schema(alumnes) -> list:
             continue    # Omitir datos incompletos
         alumnes_list.append(schema)
     return alumnes_list
+
+def alumne_sch2(student) -> dict:
+    if len(student) > 5:
+        return {"status": -1, "message": "Datos incompletos"}
+    return {"NomAlumne": student[0],
+            "Cicle": student[1],
+            "Curs": student[2],
+            "Grup": student[3],
+            "DescAula": student[4]
+            }
+
+def alumne_sch2_list(alumnos) -> dict:
+    alumnes_list = []
+    for alumne in alumnos:
+        schema = alumne_sch2(alumne)
+        if "status" in schema and schema["status"] == -1:
+            continue
+        alumnes_list.append(schema)
+    return alumnes_list
