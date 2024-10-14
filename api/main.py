@@ -3,12 +3,20 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import alumne
 from alumne import alumne_schema
+from alumne import alumne_sch2_list
+from aula import aules_alumnes_schema
 import db_alumne
 import db_aula
-from aula import aules_alumnes_schema
-from alumne import alumne_sch2_list
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Modelo Pydantic para los datos de un alumno
 class student(BaseModel):
@@ -21,8 +29,15 @@ class student(BaseModel):
     CreatedAt: int
     UpdatedAt: int
 
+class tablaAlumne(BaseModel):
+    NomAlumne: str
+    Cicle: str
+    Curs: int
+    Grup: str
+    DescAula: int
+
 # Endpoint para listar todos los alumnos
-@app.get("/alumne/list", response_model=List[dict])
+@app.get("/alumne/list", response_model=List[tablaAlumne])
 def read_alumnes():
     # Llama a la función para obtener alumnos
     adb = db_alumne.read_list()
@@ -33,8 +48,6 @@ def read_alumnes():
     except ValueError as e:
         # Maneja errores si los datos no son válidos
         raise HTTPException(status_code=500, detail=str(e))
-    if not isinstance(alumnes_sch,list):
-        raise HTTPException(status_code=500, detail="Error procesando datos de alumnos")
     return alumnes_sch
 
 # Endpoint para mostrar detalles de un alumno específico por ID

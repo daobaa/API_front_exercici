@@ -24,14 +24,14 @@ def alumnes_schema(alumnes) -> list:
         alumnes_list.append(schema)
     return alumnes_list
 
-def alumne_sch2(student) -> dict:
-    if len(student) > 5:
+def alumne_sch2(fetchAlumnes) -> dict:
+    if len(fetchAlumnes) > 5:
         return {"status": -1, "message": "Datos incompletos"}
-    return {"NomAlumne": student[0],
-            "Cicle": student[1],
-            "Curs": student[2],
-            "Grup": student[3],
-            "DescAula": student[4]
+    return {"NomAlumne": fetchAlumnes[0],
+            "Cicle": fetchAlumnes[1],
+            "Curs": fetchAlumnes[2],
+            "Grup": fetchAlumnes[3],
+            "DescAula": fetchAlumnes[4]
             }
 
 def alumne_sch2_list(alumnos) -> dict:
