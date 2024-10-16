@@ -11,7 +11,7 @@ Funcionamiento de index.html:
 ![test_indexhtml](https://github.com/user-attachments/assets/d1a9d0cf-2683-4405-bfc7-35d3e4684c18)
 
 
-https://github.com/user-attachments/assets/49c41ce3-9e8d-4032-8c7e-9c847c41f2b8
+<video loop src="https://github.com/user-attachments/assets/49c41ce3-9e8d-4032-8c7e-9c847c41f2b8">
 
 
 
