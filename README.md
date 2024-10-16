@@ -19,3 +19,19 @@ Api tras la llamada del endpoint sin errores:
 
 ### Apartado 2
 
+#### orderby
+
+Orden Ascendente:
+
+![image](https://github.com/user-attachments/assets/81754f60-dc0b-4225-a744-ab5661887a35)
+
+Orden Descendente:
+
+![image](https://github.com/user-attachments/assets/ca5d4fe6-a586-4e6a-88a4-e12eeb3d6808)
+
+Terminal sin errores en el proceso:
+
+![image](https://github.com/user-attachments/assets/61950f10-177c-4eef-98e2-c0fedc36a0ef)
+
+#### contain
+
