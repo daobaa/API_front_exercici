@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Cridem a l'endpoint de l'API fent un fetch
-    fetch("/alumne/list")
+    fetch("http://127.0.0.1:8000/alumne/list")
         .then(response =>{
             if (!response.ok) {
                 throw new Error("Error a la resposta del servidor");
