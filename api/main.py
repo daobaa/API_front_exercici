@@ -1,5 +1,5 @@
-from typing import List
-from fastapi import FastAPI, HTTPException
+from typing import List, Optional
+from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel
 import alumne
 from alumne import alumne_schema
@@ -38,9 +38,9 @@ class tablaAlumne(BaseModel):
 
 # Endpoint para listar todos los alumnos
 @app.get("/alumne/list", response_model=List[tablaAlumne])
-def read_alumnes():
+def read_alumnes(orderby: Optional[str] = Query(None, regex="^(asc|desc)$")):
     # Llama a la función para obtener alumnos
-    adb = db_alumne.read_list()
+    adb = db_alumne.read_list(orderby)
 
     try:
         # Llama a la función para obtener alumnos

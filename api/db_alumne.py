@@ -1,3 +1,4 @@
+from typing import Optional
 from client import db_client
 
 # Función para leer todos los registros de la tabla ALUMNE
@@ -81,14 +82,18 @@ def delete(id):
         conn.close()
     return {"status": 1, "message": "Alumno eliminado correctamente"}   # Confirmar la eliminación
 
-def read_list():
+def read_list(orderby: Optional[str] = None):
     try:
         conn = db_client()  # Conectar a la base de datos
         cur = conn.cursor() # Crear un cursor para ejecutar consultas
-        cur.execute("""
-                    SELECT alu.NomAlumne, alu.Cicle, alu.Curs, alu.Grup, aul.DescAula
-                    FROM ALUMNE alu INNER JOIN AULA aul ON aul.IdAula = alu.IdAula
-                    """) # Ejecutar la consulta para seleccionar todos los registros
+        base_query = """
+        SELECT alu.NomAlumne, alu.Cicle, alu.Curs, alu.Grup, aul.DescAula
+        FROM ALUMNE alu INNER JOIN AULA aul ON aul.IdAula = alu.IdAula
+        """
+        if orderby:
+            base_query += f"ORDER BY alu.NomAlumne {orderby}" #Orden de ordenar en caso de orderby
+        cur.execute(base_query) # Ejecutar la consulta para seleccionar todos los registros
+
         students = cur.fetchall()   # Obtener todos los registros resultantes
     except Exception as e:
         return {"status": -1, "message": f"Error de connexió:{e}" } # Manejar errores de conexión y consultas
