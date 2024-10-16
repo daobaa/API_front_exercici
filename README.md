@@ -10,7 +10,8 @@ Arranque de la api:
 
 Funcionamiento de index.html: 
 
-![test_indexhtml](https://github.com/user-attachments/assets/d1a9d0cf-2683-4405-bfc7-35d3e4684c18)
+![test_indexhtml_1](https://github.com/user-attachments/assets/cca3b5d0-3434-4fb8-8e48-9257746c7c46)
+
 
 Api tras la llamada del endpoint sin errores:
 
