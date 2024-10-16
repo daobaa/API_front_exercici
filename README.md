@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/3ca948de-a088-4bc0-b90b-f1d226dd7672)# Practica 2 FastApi
+# Practica 2 FastApi
 
 ## Practicas
 
@@ -9,6 +9,10 @@ Arranque de la api:
 
 Funcionamiento de index.html: 
 ![test_indexhtml](https://github.com/user-attachments/assets/d1a9d0cf-2683-4405-bfc7-35d3e4684c18)
+
+
+https://github.com/user-attachments/assets/49c41ce3-9e8d-4032-8c7e-9c847c41f2b8
+
 
 
 ![image](https://github.com/user-attachments/assets/4336a559-e21c-47cd-87fb-605b27635097)
