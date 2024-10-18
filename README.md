@@ -17,8 +17,7 @@ Api tras la llamada del endpoint sin errores:
 
 ## Apartado 2
 
-### ?orderby
-
+### ?orderby=(str)
 Orden Ascendente:
 
 ![image](https://github.com/user-attachments/assets/81754f60-dc0b-4225-a744-ab5661887a35)
@@ -31,7 +30,7 @@ Terminal sin errores:
 
 ![image](https://github.com/user-attachments/assets/61950f10-177c-4eef-98e2-c0fedc36a0ef)
 
-### ?contain
+### ?contain=(str)
 Prueba Contain:
 
 ![image](https://github.com/user-attachments/assets/929b066c-1d9e-4968-90c4-5ea83b46f5b7)
@@ -44,4 +43,22 @@ Terminal sin errores:
 
 ![image](https://github.com/user-attachments/assets/530c4c3b-c0a8-41c1-8e46-d41e4d4757d2)
 
+### ?skip=(int)&limit=(int)
+Skip de dos filas:
+
+![image](https://github.com/user-attachments/assets/38e6378e-e72d-4eba-82c3-fe6484d3db56)
+
+Limit de dos filas:
+
+![image](https://github.com/user-attachments/assets/0b399596-a7dc-417e-8572-5738a32cf577)
+
+Skip & Limit:
+
+![image](https://github.com/user-attachments/assets/04bca532-e1bb-47ce-8e91-11358ebc25da)
+
+Terminal sin errores:
+
+![image](https://github.com/user-attachments/assets/f35943af-479f-4616-b181-f45d652c2b15)
+
+## Apartado 3
 
