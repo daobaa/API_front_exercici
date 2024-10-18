@@ -1,8 +1,6 @@
 # Practica 2 FastApi
 
-## Practicas
-
-### Apartado 1
+## Apartado 1
 
 Arranque de la api:
 
@@ -17,9 +15,9 @@ Api tras la llamada del endpoint sin errores:
 
 ![image](https://github.com/user-attachments/assets/4336a559-e21c-47cd-87fb-605b27635097)
 
-### Apartado 2
+## Apartado 2
 
-#### orderby
+### ?orderby
 
 Orden Ascendente:
 
@@ -29,9 +27,21 @@ Orden Descendente:
 
 ![image](https://github.com/user-attachments/assets/ca5d4fe6-a586-4e6a-88a4-e12eeb3d6808)
 
-Terminal sin errores en el proceso:
+Terminal sin errores:
 
 ![image](https://github.com/user-attachments/assets/61950f10-177c-4eef-98e2-c0fedc36a0ef)
 
-#### contain
+### ?contain
+Prueba Contain:
+
+![image](https://github.com/user-attachments/assets/929b066c-1d9e-4968-90c4-5ea83b46f5b7)
+
+Prueba Orderby & Contain:
+
+![image](https://github.com/user-attachments/assets/1c58aa7c-3f61-48f3-abee-f470f18a2f48)
+
+Terminal sin errores:
+
+![image](https://github.com/user-attachments/assets/530c4c3b-c0a8-41c1-8e46-d41e4d4757d2)
+
 
