@@ -41,8 +41,8 @@ class tablaAlumne(BaseModel):
 async def read_alumnes(
     orderby: Optional[str] = Query(None, regex="^(asc|desc)$"),
     contain: Optional[str] = None,
-    skip: Optional[int] = None,
-    limit: Optional[int] = None
+    skip: Optional[int] = Query(0, ge=0, le=100),
+    limit: Optional[int] = Query(10, ge=1, le=100)
 ):
     # Llama a la función para obtener alumnos
     adb = db_alumne.read_list(orderby, contain, skip, limit)
