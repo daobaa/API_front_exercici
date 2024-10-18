@@ -40,10 +40,12 @@ class tablaAlumne(BaseModel):
 @app.get("/alumne/list", response_model=List[tablaAlumne])
 async def read_alumnes(
     orderby: Optional[str] = Query(None, regex="^(asc|desc)$"),
-    contain: Optional[str] = None
+    contain: Optional[str] = None,
+    skip: Optional[int] = None,
+    limit: Optional[int] = None
 ):
     # Llama a la función para obtener alumnos
-    adb = db_alumne.read_list(orderby, contain)
+    adb = db_alumne.read_list(orderby, contain, skip, limit)
 
     try:
         # Llama a la función para obtener alumnos
