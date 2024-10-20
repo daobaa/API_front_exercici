@@ -70,6 +70,7 @@ async def load_alumnes(file: UploadFile = File(...)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error procesando el archivo CSV: {e}")
     
+    mensajes = []
     for alumne in alumnes:
         try:
             print("Procesando alumno:", alumne)
@@ -78,16 +79,23 @@ async def load_alumnes(file: UploadFile = File(...)):
                 Edifici=int(alumne['Edifici']),
                 Pis=int(alumne['Pis'])
             )
-            db_alumne.create(
+            create_result = db_alumne.create(
                 IdAula=int(alumne['IdAula']),
                 NomAlumne=alumne['NomAlumne'],
                 Cicle=alumne['Cicle'],
                 Curs=int(alumne['Curs']),
                 Grup=alumne['Grup']
             )
+            if create_result.get("status") == -1:
+                mensajes.append(f"Error: {create_result['message']} para el alumno {alumne['NomAlumne']}")
+            else:
+                mensajes.append(f"Éxito: Alumno {alumne['NomAlumne']} creado exitosamente.")
+        except KeyError as e:
+            mensajes.append(f"Error: Clave {str(e)} no encontrada en el CSV.")
         except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Error insertando datos en la base de datos: {e}")
-    return {"message" : "Alumnos cargados exitosamente en la base de datos"}
+            mensajes.append(f"Error: {str(e)}")
+
+    return {"message" : mensajes}
 
 # Endpoint para mostrar detalles de un alumno específico por ID
 @app.get("/alumne/show/{id}", response_model=dict)

@@ -34,6 +34,10 @@ def read_id(id):
 
 # Función para crear un nuevo registro en la tabla ALUMNE
 def create(IdAula,NomAlumne,Cicle,Curs,Grup):
+    if name_exists(NomAlumne):
+        print(f"El nombre del alumno {NomAlumne} ya existe en la base de datos.")
+        return {"status": -1, "message": "Este alumno ya existe en la base de datos."}
+    
     try:
         conn = db_client()
         cur = conn.cursor()
@@ -110,3 +114,19 @@ def read_list(
     finally:
         conn.close() # Cerrar la conexión a la base de datos
     return students # Retornar los registros obtenidos
+
+def name_exists(NomAlumne):
+    try:
+        conn = db_client()
+        cur = conn.cursor()
+        query = "SELECT COUNT(*) FROM ALUMNE WHERE NomAlumne = %s"
+        cur.execute(query, (NomAlumne,))
+        result = cur.fetchone()
+        print(f"Verificación de existencia del nombre {NomAlumne}: {result[0]}")
+    except Exception as e:
+        print(f"Error de conexión: {e}")
+        return False
+        return {"status": -1, "message": f"Error de connexió: {e}"}
+    finally:
+        conn.close()
+    return result[0] > 0  # Devuelve True si el nombre existe, False de lo contrario
