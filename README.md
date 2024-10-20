@@ -62,3 +62,20 @@ Terminal sin errores:
 
 ## Apartado 3
 
+Admisión de alumnos a creados:
+
+![image](https://github.com/user-attachments/assets/25fddd92-7096-416c-a5b9-6f530e105aab)
+
+Alumnos creados en la tabla correspondiente:
+
+![image](https://github.com/user-attachments/assets/60a9009b-a66e-4fb9-b68a-93fca5a66337)
+
+Terminal sin errores:
+
+![image](https://github.com/user-attachments/assets/0d1d2a61-596e-4ba5-b55e-e08025f800ea)
+
+En caso de alumno ya existente en la base de datos:
+
+![image](https://github.com/user-attachments/assets/806388c1-b194-4bb1-9a52-9ed60730dfce)
+
+
