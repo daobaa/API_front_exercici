@@ -37,7 +37,7 @@ def create(IdAula,NomAlumne,Cicle,Curs,Grup):
     try:
         conn = db_client()
         cur = conn.cursor()
-        query = "INSERT into ALUMNE (IdAula,NomAlumne,Cicle,Curs,Grup) VALUES (%s,%s,%s,%s,%s);"    # Consulta de inserción
+        query = "INSERT into ALUMNE (IdAula,NomAlumne,Cicle,Curs,Grup) VALUES (%s,%s,%s,%s,%s);" # Consulta de inserción
         values = (IdAula,NomAlumne,Cicle,Curs,Grup)
         cur.execute(query,values)
 

@@ -1,5 +1,5 @@
 from typing import List, Optional
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, File, UploadFile
 from pydantic import BaseModel
 import alumne
 from alumne import alumne_schema
@@ -8,6 +8,7 @@ from aula import aules_alumnes_schema
 import db_alumne
 import db_aula
 from fastapi.middleware.cors import CORSMiddleware
+import csv
 
 app = FastAPI()
 app.add_middleware(
@@ -54,6 +55,31 @@ async def read_alumnes(
         # Maneja errores si los datos no son válidos
         raise HTTPException(status_code=500, detail=str(e))
     return alumnes_sch
+
+@app.post("/alumne/loadAlumnes")
+async def loadAlumnes(file: UploadFile = File(...)):
+    if file.content_type != 'text/csv':
+        raise HTTPException(status_code=400, detail="El archivo debe ser un CSV")
+    
+    try:
+        contents = await file.read()
+        decoded_contents = contents.decode(decoded_contents)
+        reader = csv.DictReader(decoded_contents)
+        alumnes = [row for row in reader]
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error procesando el archivo CSV: {e}")
+    for alumne in alumnes:
+        try:
+            db_alumne.create(
+                IdAula=int(alumne['IdAula']),
+                NomAlumne=alumne['NomAlumne'],
+                Cicle=alumne['Cicle'],
+                Curs=int(alumne['Curs']),
+                Grup=alumne['Grup']
+            )
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=f"Error insertando datos en la base de datos: {e}")
+    return {"message" : "Alumnos cargados exitosamente en la base de datos"}
 
 # Endpoint para mostrar detalles de un alumno específico por ID
 @app.get("/alumne/show/{id}", response_model=dict)
