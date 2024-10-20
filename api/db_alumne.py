@@ -37,17 +37,16 @@ def create(IdAula,NomAlumne,Cicle,Curs,Grup):
     try:
         conn = db_client()
         cur = conn.cursor()
-        query = "INSERT into ALUMNE (IdAula,NomAlumne,Cicle,Curs,Grup) VALUES (%s,%s,%s,%s,%s);" # Consulta de inserción
+        query = "INSERT into ALUMNE (IdAula,NomAlumne,Cicle,Curs,Grup) VALUES (%s,%s,%s,%s,%s)" # Consulta de inserción
         values = (IdAula,NomAlumne,Cicle,Curs,Grup)
         cur.execute(query,values)
 
         conn.commit()
-        alumne_id = cur.lastrowid   # Obtener el ID del nuevo registro
     except Exception as e:
         return {"status": -1, "message": f"Error de connexió:{e}"}
     finally:
         conn.close()
-    return alumne_id
+    return {"status": 1, "message": "Alumno creado exitosamente"}
 
 # Función para actualizar un registro específico en la tabla ALUMNE por ID
 def update(IdAula,NomAlumne,Cicle,Curs,Grup,id):

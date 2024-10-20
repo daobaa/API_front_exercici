@@ -9,7 +9,6 @@ import db_alumne
 import db_aula
 from fastapi.middleware.cors import CORSMiddleware
 import csv
-from fastapi.openapi.models import APIKey
 
 app = FastAPI()
 app.add_middleware(
@@ -58,23 +57,27 @@ async def read_alumnes(
     return alumnes_sch
 
 @app.post("/alumne/loadAlumnes")
-async def loadAlumnes(file: UploadFile = File(...)):
+async def load_alumnes(file: UploadFile = File(...)):
     if file.content_type != 'text/csv':
         raise HTTPException(status_code=400, detail="El archivo debe ser un CSV")
     
     try:
         contents = await file.read()
         decoded_contents = contents.decode('utf-8')
-
-
-
-        reader = csv.DictReader(decoded_contents.splitlines())
+        fieldnames = ['DescAula','Edifici','Pis','IdAula','NomAlumne','Cicle','Curs','Grup']
+        reader = csv.DictReader(decoded_contents.splitlines(), fieldnames=fieldnames)
         alumnes = [row for row in reader]
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error procesando el archivo CSV: {e}")
     
     for alumne in alumnes:
         try:
+            print("Procesando alumno:", alumne)
+            db_aula.create(
+                DescAula=int(alumne['DescAula']),
+                Edifici=int(alumne['Edifici']),
+                Pis=int(alumne['Pis'])
+            )
             db_alumne.create(
                 IdAula=int(alumne['IdAula']),
                 NomAlumne=alumne['NomAlumne'],

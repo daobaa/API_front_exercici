@@ -32,3 +32,18 @@ def read_all():
     finally:
         conn.close()
     return students_classes
+
+def create(DescAula,Edifici,Pis):
+    try:
+        conn = db_client()
+        cur = conn.cursor()
+        query = "INSERT INTO AULA (DescAula, Edifici, Pis) VALUES (%s, %s, %s)"
+        values = (DescAula, Edifici, Pis)
+        cur.execute(query, values)
+        
+        conn.commit()
+    except Exception as e:
+        return {"status": -1, "message": f"Error de connexió: {e}"}
+    finally:
+        conn.close()
+    return {"status": 1, "message": "Aula creada exitosamente"}
